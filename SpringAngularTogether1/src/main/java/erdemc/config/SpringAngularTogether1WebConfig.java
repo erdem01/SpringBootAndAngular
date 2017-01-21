@@ -1,5 +1,6 @@
 package erdemc.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -17,18 +19,15 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 @Configuration
 @EnableWebSecurity
 public class SpringAngularTogether1WebConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-		.ldapAuthentication()
-		.userSearchFilter("uid={0}")
-		.groupSearchBase("ou=groups")
-		.groupSearchFilter("member={0}")
-		.contextSource()
-		.url("ldap://localhost:389/dc=erdemc,dc=deneme")
-		.managerDn("cn=admin,dc=erdemc,dc=deneme")
-		.managerPassword("invader84;");
+		.userDetailsService(userDetailsService)
+		.passwordEncoder(passwordEncoder());
 	}
 
 	@Override
