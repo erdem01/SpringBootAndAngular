@@ -17,7 +17,7 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<User> findUsers() {
 		final List<User> users = userDAO.findAll();
 		users.forEach(user -> user.getRoles().forEach(role -> System.out.println(role.getRoleName())));

@@ -38,7 +38,7 @@ public class SpringAngularTogether1WebConfig extends WebSecurityConfigurerAdapte
          .authenticationEntryPoint(authEntryPoint())
          .and()
          .authorizeRequests()
-         .antMatchers("/**").authenticated()
+         .antMatchers("/**").hasAnyRole("ROLE_USER")
          .and()
          .formLogin()
          .usernameParameter("username")
