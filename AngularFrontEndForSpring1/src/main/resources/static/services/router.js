@@ -2,7 +2,8 @@
 	var module = angular.module('RouterModule', ['ngRoute', 'AuthenticationModule']);
 	module.constant('loginPath','/login');
 	module.constant('helloPath','/hello');
-	module.factory('RouteService', ['$location', 'loginPath', 'helloPath', function($location, loginPath, helloPath) {
+	module.constant('orderPath','/order');
+	module.factory('RouteService', ['$location', 'loginPath', 'helloPath', 'orderPath', function($location, loginPath, helloPath, orderPath) {
 		var redirectToLogin = function() {
 			$location.path(loginPath);
 		};
@@ -11,12 +12,17 @@
 			$location.path(helloPath);
 		};
 		
+		var redirectToOrder = function() {
+			$location.path(orderPath);
+		};
+		
 		return {
-			redirectToLogin: redirectToLogin,
-			redirectToHello: redirectToHello
+			redirectToLogin: redirectToLogin
+			, redirectToHello: redirectToHello
+			, redirectToOrder: redirectToOrder
 		};
 	}]);
-	module.config(['$routeProvider', 'loginPath', 'helloPath', function($routeProvider, loginPath, helloPath) {
+	module.config(['$routeProvider', 'loginPath', 'helloPath', 'orderPath', function($routeProvider, loginPath, helloPath, orderPath) {
 		$routeProvider
 		
         .when(helloPath, {
@@ -30,8 +36,14 @@
             templateUrl: 'pages/login/login.view.html',
             controllerAs: 'ctrl'
         })
+        
+        .when(orderPath, {
+        	controller: 'OrderPageController',
+        	templateUrl: 'pages/order/order.view.html',
+            controllerAs: 'ctrl'
+        })
 
-        .otherwise({ redirectTo: helloPath });
+        .otherwise({ redirectTo: orderPath });
 	}]);
 	module.config(['$httpProvider', function($httpProvider) {
 		$httpProvider.interceptors.push('AuthInterceptor');

@@ -7,7 +7,7 @@
 		self.login = function() {
 			var loginPromise = AuthenticationService.login(self.username, self.password);
 			loginPromise.then(function(response) {
-				RouteService.redirectToHello();
+				RouteService.redirectToOrder();
 			}, function(errorMessage) {
 				$log.log(errorMessage);
 			});
