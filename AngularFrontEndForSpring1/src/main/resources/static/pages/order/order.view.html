@@ -1,5 +1,17 @@
-<div class="list-group">
-  <a href="#" class="list-group-item" ng-repeat="coffee in ctrl.coffees">
-    <p class="list-group-item-text">{{coffee.name}}</p>
-  </a>
+<div class="jumbotron list-group col-md-5">
+	<h4 class="text-center">Coffees</h4>
+	<div class="list-group-item" ng-repeat="coffee in ctrl.getCoffees()">
+		<p class="list-group-item-text col-md-11">{{coffee.name}}</p>
+		<button type="button" class="btn btn-default btn-sm" ng-click="ctrl.addOrder(coffee)">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+	</div>
+</div>
+
+<div class="col-md-offset-2 jumbotron col-md-5">
+	<h4 class="text-center">Orders</h4>
+	
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="order in ctrl.getOrders() track by $index">{{order.coffee.name}}</li>
+	</ul>
 </div>
