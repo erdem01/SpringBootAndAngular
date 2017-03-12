@@ -14,16 +14,19 @@ public class Coffee {
 	@Id
     @Column(name="COFFEE_ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	@Column(name="NAME")
 	private String name;
 
-	public Long getId() {
+	@Column(name="PRICE")
+	private int price;
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -33,6 +36,14 @@ public class Coffee {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 }

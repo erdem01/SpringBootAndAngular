@@ -31,8 +31,38 @@
 			};
 			orders.push(newOrder);
 		}
+		self.isCoffeeOrdered = function(coffee) {
+			for(var i=0; i<orders.length; i++) {
+				var order = orders[i];
+				if(order.coffee.id == coffee.id) {
+					return true;
+				}
+			}
+			return false;
+		}
+		self.removeOrder = function(coffee) {
+			for(var i=0; i<orders.length; i++) {
+				var order = orders[i];
+				if(order.coffee.id == coffee.id) {
+					if(order.count == 1) {
+						orders.splice(i, 1);
+					} else {
+						order.count--;
+					}
+					return;
+				}
+			}
+		}
 		self.getOrders = function() {
 			return orders;
+		}
+		self.calculatePrice = function() {
+			var total = 0;
+			for(var i=0; i<orders.length; i++) {
+				var order = orders[i];
+				total += order.coffee.price * order.count;
+			}
+			return total;
 		}
 	}]);
 })();

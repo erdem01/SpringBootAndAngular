@@ -1,10 +1,21 @@
-<div class="jumbotron list-group col-md-5">
-	<h4 class="text-center">Coffees</h4>
-	<div class="list-group-item" ng-repeat="coffee in ctrl.getCoffees()">
-		<p class="list-group-item-text col-md-11">{{coffee.name}}</p>
-		<button type="button" class="btn btn-default btn-sm" ng-click="ctrl.addOrder(coffee)">
-			<span class="glyphicon glyphicon-plus"></span>
-		</button>
+<div class="jumbotron col-md-5">
+	<div class="list-group">
+		<h4 class="text-center">Coffees</h4>
+		<div class="list-group-item" ng-repeat="coffee in ctrl.getCoffees()">
+			<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+			  <div class="input-group">
+			    <p class="list-group-item-text col-md-11">{{coffee.name}}</p>
+			  </div>
+			  <div class="btn-group pull-right" role="group" aria-label="Basic example">
+			  	<button type="button" class="btn btn-default btn-sm" ng-show="ctrl.isCoffeeOrdered(coffee)" ng-click="ctrl.removeOrder(coffee)">
+					<span class="glyphicon glyphicon-minus"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-sm" ng-click="ctrl.addOrder(coffee)">
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -17,4 +28,17 @@
 			{{order.coffee.name}}
 		</li>
 	</ul>
+	
+	<div class="list-group-item">
+		<div class="btn-toolbar justify-content-between" role="toolbar">
+		  <div class="input-group">
+		    <p class="list-group-item-text">Total Price: {{ctrl.calculatePrice()}}</p>
+		  </div>
+		  <div class="btn-group pull-right" role="group" aria-label="Basic example">
+		  	<button type="button" class="btn btn-default btn-sm pull-right" ng-show="ctrl.getOrders().length > 0">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
+			</button>
+		  </div>
+		</div>
+	</div>
 </div>
