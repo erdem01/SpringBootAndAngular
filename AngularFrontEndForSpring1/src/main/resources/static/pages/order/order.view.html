@@ -12,6 +12,9 @@
 	<h4 class="text-center">Orders</h4>
 	
 	<ul class="list-group">
-		<li class="list-group-item" ng-repeat="order in ctrl.getOrders() track by $index">{{order.coffee.name}}</li>
+		<li class="list-group-item" ng-repeat="order in ctrl.getOrders() track by $index">
+			<span class="badge">{{order.count}}</span>
+			{{order.coffee.name}}
+		</li>
 	</ul>
 </div>
