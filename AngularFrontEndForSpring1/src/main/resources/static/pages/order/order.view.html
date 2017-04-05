@@ -11,7 +11,7 @@
 						<span class="glyphicon glyphicon-minus"></span>
 					</button>
 			      </span>
-			      <input type="number" class="form-control">
+			      <input type="number" class="form-control" ng-model="ctrl.findOrderCount(coffee)">
 			      <span class="input-group-btn">
 			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(coffee)">
 			        	<span class="glyphicon glyphicon-plus"></span>
@@ -29,8 +29,24 @@
 	
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="order in ctrl.getOrders() track by $index">
-			<span class="badge">{{order.count}}</span>
-			{{order.coffee.name}}
+			<div class="row">
+			  <p class="list-group-item-text col-md-6">{{order.coffee.name}}</p>
+			  <div class="col-md-offset-3 col-md-3">
+			    <div class="input-group">
+			      <span class="input-group-btn" ng-show="ctrl.isCoffeeOrdered(order.coffee)" ng-click="ctrl.removeOrder(order.coffee)">
+			        <button class="btn btn-secondary" type="button">
+						<span class="glyphicon glyphicon-minus"></span>
+					</button>
+			      </span>
+			      <input type="number" class="form-control" ng-model="ctrl.findOrderCount(order.coffee)">
+			      <span class="input-group-btn">
+			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(order.coffee)">
+			        	<span class="glyphicon glyphicon-plus"></span>
+			        </button>
+			      </span>
+			    </div>
+			  </div>
+			</div>
 		</li>
 	</ul>
 	

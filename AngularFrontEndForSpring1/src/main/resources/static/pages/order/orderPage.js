@@ -17,28 +17,33 @@
 		};
 		refreshCoffees();
 		var orders = [];
-		self.addOrder = function(coffee) {
+		self.findOrder = function(coffee) {
 			for(var i=0; i<orders.length; i++) {
 				var order = orders[i];
 				if(order.coffee.id == coffee.id) {
-					order.count++;
-					return;
+					return order;
 				}
 			}
-			var newOrder = {
-				count: 1,
-				coffee: coffee
-			};
-			orders.push(newOrder);
+			return null;
+		}
+		self.findOrderCount = function(coffee) {
+			var order = self.findOrder(coffee);
+			return order === null ? 0 : order.count;
+		}
+		self.addOrder = function(coffee) {
+			var order = self.findOrder(coffee);
+			if(order === null) {
+				order = {
+					count: 1,
+					coffee: coffee
+				};
+				orders.push(order);
+			} else {
+				order.count++;
+			}
 		}
 		self.isCoffeeOrdered = function(coffee) {
-			for(var i=0; i<orders.length; i++) {
-				var order = orders[i];
-				if(order.coffee.id == coffee.id) {
-					return true;
-				}
-			}
-			return false;
+			return self.findOrder(coffee) !== null;
 		}
 		self.removeOrder = function(coffee) {
 			for(var i=0; i<orders.length; i++) {
