@@ -18,6 +18,9 @@
 		refreshCoffees();
 		var orders = [];
 		self.findOrder = function(coffee) {
+			if(coffee === null) {
+				return null;
+			}
 			for(var i=0; i<orders.length; i++) {
 				var order = orders[i];
 				if(order.coffee.id == coffee.id) {
@@ -55,6 +58,14 @@
 						order.count--;
 					}
 					return;
+				}
+			}
+		}
+		self.refreshOrders = function() {
+			for(var i=0; i<orders.length; i++) {
+				var order = orders[i];
+				if(order.count <= 0) {
+					orders.splice(i, 1);
 				}
 			}
 		}

@@ -11,7 +11,7 @@
 						<span class="glyphicon glyphicon-minus"></span>
 					</button>
 			      </span>
-			      <input type="number" class="form-control" ng-model="ctrl.findOrderCount(coffee)">
+			      <input type="number" min="0" class="form-control" ng-model="ctrl.findOrder(coffee).count">
 			      <span class="input-group-btn">
 			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(coffee)">
 			        	<span class="glyphicon glyphicon-plus"></span>
@@ -38,7 +38,7 @@
 						<span class="glyphicon glyphicon-minus"></span>
 					</button>
 			      </span>
-			      <input type="number" class="form-control" ng-model="ctrl.findOrderCount(order.coffee)">
+			      <input type="number" min="0" class="form-control" ng-model="order.count" ng-change="ctrl.refreshOrders()">
 			      <span class="input-group-btn">
 			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(order.coffee)">
 			        	<span class="glyphicon glyphicon-plus"></span>
