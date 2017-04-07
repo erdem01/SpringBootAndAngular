@@ -3,74 +3,56 @@
 	module.controller('OrderPageController', ['$log', 'CoffeeService', function($log, CoffeeService) {
 		var self = this;
 		var coffees = [];
+		var orderables = [];
+		var orders = [];
 		self.getCoffees = function() {
 			return coffees;
 		};
+		self.getOrderables = function() {
+			return orderables;
+		};
+		self.getOrders = function() {
+			return orders;
+		};
+		var generateOrderables = function(coffees) {
+			var result = [];
+			for(var i=0; i<coffees.length; i++) {
+				var coffee = coffees[i];
+				var order = {
+					count: 0,
+					coffee: coffee	
+				};
+				result.push(order);
+			}
+			return result;
+		}
 		var refreshCoffees = function() {
 			var coffeePromise = CoffeeService.gatherCoffees();
 			coffeePromise.then(function(response) {
 				coffees = response;
+				orderables = generateOrderables(coffees);
 				$log.log(response);
 			}, function(errorMessage) {
 				$log.log(errorMessage);
 			});
 		};
-		refreshCoffees();
-		var orders = [];
-		self.findOrder = function(coffee) {
-			if(coffee === null) {
-				return null;
-			}
-			for(var i=0; i<orders.length; i++) {
-				var order = orders[i];
-				if(order.coffee.id == coffee.id) {
-					return order;
-				}
-			}
-			return null;
-		}
-		self.findOrderCount = function(coffee) {
-			var order = self.findOrder(coffee);
-			return order === null ? 0 : order.count;
-		}
-		self.addOrder = function(coffee) {
-			var order = self.findOrder(coffee);
-			if(order === null) {
-				order = {
-					count: 1,
-					coffee: coffee
-				};
-				orders.push(order);
-			} else {
-				order.count++;
+		self.removeOrder = function(order) {
+			if(order.count > 0) {
+				order.count--;
 			}
 		}
-		self.isCoffeeOrdered = function(coffee) {
-			return self.findOrder(coffee) !== null;
-		}
-		self.removeOrder = function(coffee) {
-			for(var i=0; i<orders.length; i++) {
-				var order = orders[i];
-				if(order.coffee.id == coffee.id) {
-					if(order.count == 1) {
-						orders.splice(i, 1);
-					} else {
-						order.count--;
-					}
-					return;
-				}
-			}
+		self.addOrder = function(order) {
+			order.count++;
 		}
 		self.refreshOrders = function() {
-			for(var i=0; i<orders.length; i++) {
-				var order = orders[i];
-				if(order.count <= 0) {
-					orders.splice(i, 1);
+			var newBill = [];
+			for(var i=0; i<orderables.length; i++) {
+				var order = orderables[i];
+				if(order.count > 0) {
+					newBill.push(order);
 				}
 			}
-		}
-		self.getOrders = function() {
-			return orders;
+			orders = newBill;
 		}
 		self.calculatePrice = function() {
 			var total = 0;
@@ -80,5 +62,6 @@
 			}
 			return total;
 		}
+		refreshCoffees();
 	}]);
 })();
