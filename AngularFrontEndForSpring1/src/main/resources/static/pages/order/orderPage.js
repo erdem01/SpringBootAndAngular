@@ -62,6 +62,9 @@
 			}
 			return total;
 		}
+		self.deleteOrder = function(order) {
+			order.count = 0;
+		}
 		refreshCoffees();
 	}]);
 })();
