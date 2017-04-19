@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="HomePageModule">
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+<script type="text/javascript" src="lib/node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="lib/node_modules/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="lib/node_modules/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="services/router.js"></script>
+<script type="text/javascript" src="services/authentication.js"></script>
+<script type="text/javascript" src="services/coffee.js"></script>
+<script type="text/javascript" src="pages/login/loginPage.js"></script>
+<script type="text/javascript" src="pages/hello/helloPage.js"></script>
+<script type="text/javascript" src="pages/order/orderPage.js"></script>
+
+<script type="text/javascript" src="app.js"></script>
 </head>
 	<body>
 	
-		asd2
+		<div ng-view></div>
+		
 	</body>
 </html>
