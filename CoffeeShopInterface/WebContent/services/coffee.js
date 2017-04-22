@@ -3,7 +3,7 @@
 	module.factory('CoffeeService', ['$http', '$q', function($http, $q) {
 		var gatherCoffees = function() {
 			var deferred = $q.defer();
-			var coffeesPromise = $http.get("http://localhost:8081/SpringAngularTogether1/coffees").success(function(response) {
+			var coffeesPromise = $http.get("/coffeeShopServ/coffees").success(function(response) {
 				deferred.resolve(response);
 			}).error(function(response) {
 				deferred.reject("");

@@ -38,7 +38,7 @@
                 }
             };
 			var deferred = $q.defer();
-			var loginPromise = $http.post("http://localhost:8081/SpringAngularTogether1/login", postData, config).success(function(response) {
+			var loginPromise = $http.post("/coffeeShopServ/login", postData, config).success(function(response) {
 				AuthenticationHolderService.holdAuth(username, password);
 				deferred.resolve(response);
 			}).error(function(data, status, headers, config) {
