@@ -1,0 +1,71 @@
+<div class="jumbotron col-md-5">
+	<div class="list-group">
+		<h4 class="text-center">Coffees</h4>
+		<div class="list-group-item" ng-repeat="orderable in ctrl.getOrderables()">
+			<div class="row">
+			  <p class="list-group-item-text col-md-6">{{orderable.coffee.name}}</p>
+			  <div class="col-md-offset-2 col-md-4">
+			    <div class="input-group">
+			      <span class="input-group-btn" ng-show="orderable.count > 0">
+			      	<button class="btn btn-secondary" type="button" ng-click="ctrl.deleteOrder(orderable); ctrl.refreshOrders()">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+			        <button class="btn btn-secondary" type="button" ng-click="ctrl.removeOrder(orderable); ctrl.refreshOrders()">
+						<span class="glyphicon glyphicon-minus"></span>
+					</button>
+			      </span>
+			      <input type="number" min="0" class="form-control" ng-model="orderable.count" ng-change="ctrl.refreshOrders()">
+			      <span class="input-group-btn">
+			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(orderable); ctrl.refreshOrders()">
+			        	<span class="glyphicon glyphicon-plus"></span>
+			        </button>
+			      </span>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-offset-2 jumbotron col-md-5">
+	<h4 class="text-center">Orders</h4>
+	
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="order in ctrl.getOrders() track by $index">
+			<div class="row">
+			  <p class="list-group-item-text col-md-6">{{order.coffee.name}}</p>
+			  <div class="col-md-offset-2 col-md-4">
+			    <div class="input-group">
+			      <span class="input-group-btn" >
+			      	<button class="btn btn-secondary" type="button" ng-click="ctrl.deleteOrder(order); ctrl.refreshOrders()">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+			        <button class="btn btn-secondary" type="button" ng-click="ctrl.removeOrder(order)">
+						<span class="glyphicon glyphicon-minus"></span>
+					</button>
+			      </span>
+			      <input type="number" min="0" class="form-control" ng-model="order.count">
+			      <span class="input-group-btn">
+			        <button class="btn btn-secondary" type="button" ng-click="ctrl.addOrder(order)">
+			        	<span class="glyphicon glyphicon-plus"></span>
+			        </button>
+			      </span>
+			    </div>
+			  </div>
+			</div>
+		</li>
+	</ul>
+	
+	<div class="list-group-item">
+		<div class="btn-toolbar justify-content-between" role="toolbar">
+		  <div class="input-group">
+		    <p class="list-group-item-text">Total Price: {{ctrl.calculatePrice()}}</p>
+		  </div>
+		  <div class="btn-group pull-right" role="group" aria-label="Basic example">
+		  	<button type="button" class="btn btn-default btn-sm pull-right" ng-show="ctrl.getOrders().length > 0">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
+			</button>
+		  </div>
+		</div>
+	</div>
+</div>
