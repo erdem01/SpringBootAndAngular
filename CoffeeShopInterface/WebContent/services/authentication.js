@@ -38,10 +38,10 @@
                 }
             };
 			var deferred = $q.defer();
-			var loginPromise = $http.post("/coffeeShopServ/login", postData, config).success(function(response) {
+			var loginPromise = $http.post("/coffeeShopServ/login", postData, config).then(function(response) {
 				AuthenticationHolderService.holdAuth(username, password);
 				deferred.resolve(response);
-			}).error(function(data, status, headers, config) {
+			}).catch(function(data, status, headers, config) {
 				deferred.reject("Login failed with status: " + status);
 			});
 			return deferred.promise;

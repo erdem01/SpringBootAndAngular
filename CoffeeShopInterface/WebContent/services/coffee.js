@@ -3,9 +3,9 @@
 	module.factory('CoffeeService', ['$http', '$q', function($http, $q) {
 		var gatherCoffees = function() {
 			var deferred = $q.defer();
-			var coffeesPromise = $http.get("/coffeeShopServ/coffees").success(function(response) {
+			var coffeesPromise = $http.get("/coffeeShopServ/coffees").then(function(response) {
 				deferred.resolve(response);
-			}).error(function(response) {
+			}).catch(function(response) {
 				deferred.reject("");
 			});
 			return deferred.promise;
