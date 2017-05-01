@@ -37,5 +37,5 @@ describe('CoffeeService module test', function() {
 	afterEach(function() {
 		$httpBackend.verifyNoOutstandingExpectation();
 		$httpBackend.verifyNoOutstandingRequest();
-	})
+	});
 });
