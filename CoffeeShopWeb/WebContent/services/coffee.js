@@ -6,7 +6,7 @@
 			var coffeesPromise = $http.get("/coffeeShopServ/coffees").then(function(response) {
 				deferred.resolve(response);
 			}).catch(function(response) {
-				deferred.reject("");
+				deferred.reject(response);
 			});
 			return deferred.promise;
 		};
