@@ -5,7 +5,6 @@ describe('CoffeeService module test', function() {
 	beforeEach(inject(function(_$httpBackend_, _CoffeeService_) {
 		$httpBackend = _$httpBackend_;
 		CoffeeService = _CoffeeService_;
-		expected = [{id: 1, name: 'Mocha', price: 28}];
 		arrangeResult = function(respCode, resultObj) {
 			$httpBackend.expectGET("/coffeeShopServ/coffees").respond(respCode, resultObj);
 		};

@@ -41,8 +41,8 @@
 			var loginPromise = $http.post("/coffeeShopServ/login", postData, config).then(function(response) {
 				AuthenticationHolderService.holdAuth(username, password);
 				deferred.resolve(response);
-			}).catch(function(data, status, headers, config) {
-				deferred.reject("Login failed with status: " + status);
+			}).catch(function(response) {
+				deferred.reject(response);
 			});
 			return deferred.promise;
 		};
