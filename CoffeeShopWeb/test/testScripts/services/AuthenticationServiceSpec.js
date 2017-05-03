@@ -44,7 +44,6 @@ describe('AuthenticationService test', function() {
 			result = response;
 		});
 		$httpBackend.flush();
-		console.info(result);
 		expect(result.status).toEqual(respCode);
 		expect(result.data).toEqual(expected);
 	});
