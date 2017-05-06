@@ -34,17 +34,4 @@ describe('AuthInterceptor test', function() {
 		expect(mockAuthenticationHolderService.gatherAuth).toHaveBeenCalled();
 		expect(result.headers.Authorization).toEqual(authData);
 	});
-	it('should execute requestError successfully!', function() {
-//		var expected = 'expected';
-//		var result;
-//		var asd = AuthInterceptor.requestError(expected).then(function(response) {
-//			fail("Service returned with an error! Response: " + response);
-//		}).catch(function(response) {
-//			result = response;
-//		}).finally(function() {
-//			console.info('asdasd');
-//		});
-//		console.info(asd);
-//		expect(result).toEqual(expected);
-	});
 });
