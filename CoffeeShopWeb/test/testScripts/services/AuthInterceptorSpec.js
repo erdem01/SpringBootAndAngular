@@ -34,4 +34,16 @@ describe('AuthInterceptor test', function() {
 		expect(mockAuthenticationHolderService.gatherAuth).toHaveBeenCalled();
 		expect(result.headers.Authorization).toEqual(authData);
 	});
+	it('should check if authentication info cleared when an unauthenticated call occured!', function() {
+		spyOn(mockAuthenticationHolderService, 'clearAuth');
+		var rejection = {status: 401};
+		var result = AuthInterceptor.responseError(rejection);
+		expect(mockAuthenticationHolderService.clearAuth).toHaveBeenCalled();
+	});
+	it('should check if authentication info is not cleared when any error occured!', function() {
+		spyOn(mockAuthenticationHolderService, 'clearAuth');
+		var rejection = {status: 500};
+		var result = AuthInterceptor.responseError(rejection);
+		expect(mockAuthenticationHolderService.clearAuth).not.toHaveBeenCalled();
+	});
 });
