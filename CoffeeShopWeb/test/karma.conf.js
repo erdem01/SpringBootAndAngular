@@ -20,6 +20,7 @@ module.exports = function(config) {
       '../WebContent/lib/node_modules/angular-route/angular-route.js',
       '../WebContent/lib/node_modules/angular-cookies/angular-cookies.js',
       	//prod scripts
+      '../WebContent/indexPage.js',
       '../WebContent/pages/**/*.js',
       '../WebContent/services/**/*.js',
       	//test dependencies
