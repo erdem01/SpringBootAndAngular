@@ -6,11 +6,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 <script type="text/javascript" src="lib/node_modules/angular/angular.js"></script>
-<script type="text/javascript" src="lib/node_modules/angular-route/angular-route.js"></script>
-<script type="text/javascript" src="lib/node_modules/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript"
+	src="lib/node_modules/angular-route/angular-route.js"></script>
+<script type="text/javascript"
+	src="lib/node_modules/angular-cookies/angular-cookies.js"></script>
 <script type="text/javascript" src="services/router.js"></script>
 <script type="text/javascript" src="services/authentication.js"></script>
 <script type="text/javascript" src="services/coffee.js"></script>
@@ -20,9 +23,19 @@
 
 <script type="text/javascript" src="app.js"></script>
 </head>
-	<body>
-	
-		<div ng-view></div>
-		
-	</body>
+<body>
+	<nav class="navbar navbar-default" role="navigation" ng-controller="IndexController as ctrl">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Coffee Shop</a>
+		</div>
+		<div class="navbar-right" ng-show="ctrl.isLoggedIn()">
+			<button type="button" class="btn btn-default navbar-btn" ng-click="ctrl.logout();">
+				<span class="glyphicon glyphicon-log-out"></span>	
+			</button>
+		</div>
+	</nav>
+
+	<div ng-view></div>
+
+</body>
 </html>

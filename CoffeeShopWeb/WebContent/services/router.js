@@ -48,7 +48,7 @@
 	module.config(['$httpProvider', function($httpProvider) {
 		$httpProvider.interceptors.push('AuthInterceptor');
 	}]);
-	module.run(['$rootScope', '$location', 'AuthenticationHolderService', 'RouteService', function($rootScope, $location, AuthenticationHolderService, RouteService) {
+	module.run(['$rootScope', 'AuthenticationHolderService', 'RouteService', function($rootScope, AuthenticationHolderService, RouteService) {
 		$rootScope.$on("$routeChangeStart",function(event, next, current){
 	        if(!AuthenticationHolderService.isLoggedIn()){
 	        	RouteService.redirectToLogin();
