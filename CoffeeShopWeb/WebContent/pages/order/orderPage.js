@@ -29,7 +29,7 @@
 		var refreshCoffees = function() {
 			var coffeePromise = CoffeeService.gatherCoffees();
 			coffeePromise.then(function(response) {
-				coffees = response;
+				coffees = response.data;
 				orderables = generateOrderables(coffees);
 				$log.log(response);
 			}, function(errorMessage) {

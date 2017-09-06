@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -45,7 +46,8 @@ public class SpringAngularTogether1WebConfig extends WebSecurityConfigurerAdapte
          .successHandler(authenticationSuccessHandler())
          .failureHandler(new SimpleUrlAuthenticationFailureHandler())
          .and()
-         .logout();
+         .logout()
+         .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 	}
 	
 	@Bean
