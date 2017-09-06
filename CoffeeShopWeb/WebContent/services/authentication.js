@@ -47,7 +47,14 @@
 			return deferred.promise;
 		};
 		var logout = function() {
-			AuthenticationHolderService.clearAuth();
+			var deferred = $q.defer();
+			var logoutPromise = $http.get('/coffeeShopServ/logout').then(function(response) {
+				deferred.resolve(response);
+				AuthenticationHolderService.clearAuth();
+            }).catch(function(response) {
+				deferred.reject(response);
+			});
+			return deferred.promise;
 		};
 		return {
 			login: login,
