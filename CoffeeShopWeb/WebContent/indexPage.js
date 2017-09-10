@@ -1,5 +1,5 @@
 (function() {
-	var module = angular.module('HomePageModule', ['RouterModule', 'AuthenticationModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
+	var module = angular.module('HomePageModule', ['RouteChangeModule', 'RouterModule', 'AuthenticationModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
 	module.controller('IndexController', ['RouteService', 'AuthenticationService', 'AuthenticationHolderService', '$log', function(RouteService, AuthenticationService, AuthenticationHolderService, $log) {
 		var self = this;
 		self.isLoggedIn = function() {
