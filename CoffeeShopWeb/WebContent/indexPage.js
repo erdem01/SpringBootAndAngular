@@ -13,5 +13,5 @@
 			});
 		};
 	}]);
-	var module = angular.module('HomePageModule', ['RouteChangeModule', 'RouterModule', 'AuthenticationModule', 'IndexPageModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
+	var module = angular.module('CoffeeShopAppModule', ['RouteChangeModule', 'RouterModule', 'AuthenticationModule', 'IndexPageModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
 })();
