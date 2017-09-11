@@ -1,19 +1,13 @@
 describe('RouterModule test', function() {
-	var $location, $route, $httpProvider, $rootScope, RouteService;
-	var mockAuthenticationHolderService;
+	var $location, $route, $httpProvider, RouteService;
 	var loggedIn;
 	beforeEach(module('RouterModule', function (_$httpProvider_, $provide) {
 		$httpProvider = _$httpProvider_;
-		mockAuthenticationHolderService = {
-			isLoggedIn: function() { return loggedIn; }
-		};
-		$provide.value('AuthenticationHolderService', mockAuthenticationHolderService);
 	}));
-	beforeEach(inject(function(_$location_, _$route_, _$rootScope_, _RouteService_) {
+	beforeEach(inject(function(_$location_, _$route_, _RouteService_) {
 		$location = _$location_;
 		spyOn($location, 'path');
 		$route = _$route_;
-		$rootScope = _$rootScope_;
 		RouteService = _RouteService_;
 	}));
 	it('should check redirect to login is working right.', function() {
@@ -49,15 +43,5 @@ describe('RouterModule test', function() {
 	it('should check authentication interceptor is registered.', function() {
 		RouteService.redirectToOrder();
 		expect($httpProvider.interceptors[0]).toBe('AuthInterceptor');
-	});
-	it('should change to login page if user is not logged int.', function() {
-		loggedIn = false;
-		$rootScope.$broadcast("$routeChangeStart");
-		expect($location.path).toHaveBeenCalledWith('/login');
-	});
-	it('should change to login page if user is not logged int.', function() {
-		loggedIn = true;
-		$rootScope.$broadcast("$routeChangeStart");
-		expect($location.path).not.toHaveBeenCalled();
 	});
 });
