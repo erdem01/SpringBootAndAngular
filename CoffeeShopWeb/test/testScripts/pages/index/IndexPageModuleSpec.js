@@ -1,9 +1,9 @@
-describe('HomePageModule test', function() {
+describe('IndexPageModule test', function() {
 	var IndexController, RouteService, AuthenticationService, AuthenticationHolderService;
 	var spyOnIsLoggedIn, spyOnRedirectToLogin, spyOnLogout;
 	var $scope, $q;
 	var deferred;
-	beforeEach(module('HomePageModule'));
+	beforeEach(module('IndexPageModule'));
 	beforeEach(inject(function($rootScope, _$q_, $controller, _RouteService_, _AuthenticationService_, _AuthenticationHolderService_) {
 		$scope = $rootScope.$new();
 		$q = _$q_;
