@@ -1,6 +1,6 @@
 (function() {
-	var module = angular.module('HomePageModule', ['RouterModule', 'AuthenticationModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
-	module.controller('IndexController', ['RouteService', 'AuthenticationService', 'AuthenticationHolderService', '$log', function(RouteService, AuthenticationService, AuthenticationHolderService, $log) {
+	var indexPageModule = angular.module('IndexPageModule', ['RouterModule', 'AuthenticationModule']);
+	indexPageModule.controller('IndexController', ['RouteService', 'AuthenticationService', 'AuthenticationHolderService', '$log', function(RouteService, AuthenticationService, AuthenticationHolderService, $log) {
 		var self = this;
 		self.isLoggedIn = function() {
 			return AuthenticationHolderService.isLoggedIn();
@@ -13,4 +13,5 @@
 			});
 		};
 	}]);
+	var module = angular.module('CoffeeShopAppModule', ['RouteChangeModule', 'RouterModule', 'AuthenticationModule', 'IndexPageModule', 'LoginPageModule', 'HelloPageModule', 'OrderPageModule']);
 })();

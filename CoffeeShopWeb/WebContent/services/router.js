@@ -1,9 +1,9 @@
 (function() {
-	var module = angular.module('RouterModule', ['ngRoute', 'AuthenticationModule']);
-	module.constant('loginPath','/login');
-	module.constant('helloPath','/hello');
-	module.constant('orderPath','/order');
-	module.factory('RouteService', ['$location', 'loginPath', 'helloPath', 'orderPath', function($location, loginPath, helloPath, orderPath) {
+	var routerModule = angular.module('RouterModule', ['ngRoute', 'AuthenticationModule']);
+	routerModule.constant('loginPath','/login');
+	routerModule.constant('helloPath','/hello');
+	routerModule.constant('orderPath','/order');
+	routerModule.factory('RouteService', ['$location', 'loginPath', 'helloPath', 'orderPath', function($location, loginPath, helloPath, orderPath) {
 		var redirectToLogin = function() {
 			$location.path(loginPath);
 		};
@@ -22,7 +22,7 @@
 			, redirectToOrder: redirectToOrder
 		};
 	}]);
-	module.config(['$routeProvider', 'loginPath', 'helloPath', 'orderPath', function($routeProvider, loginPath, helloPath, orderPath) {
+	routerModule.config(['$routeProvider', 'loginPath', 'helloPath', 'orderPath', function($routeProvider, loginPath, helloPath, orderPath) {
 		$routeProvider
 		
         .when(helloPath, {
@@ -45,10 +45,11 @@
 
         .otherwise({ redirectTo: orderPath });
 	}]);
-	module.config(['$httpProvider', function($httpProvider) {
+	routerModule.config(['$httpProvider', function($httpProvider) {
 		$httpProvider.interceptors.push('AuthInterceptor');
 	}]);
-	module.run(['$rootScope', 'AuthenticationHolderService', 'RouteService', function($rootScope, AuthenticationHolderService, RouteService) {
+	var routeChangeModule = angular.module('RouteChangeModule', ['ngRoute', 'AuthenticationModule', 'RouterModule']);
+	routeChangeModule.run(['$rootScope', 'AuthenticationHolderService', 'RouteService', function($rootScope, AuthenticationHolderService, RouteService) {
 		$rootScope.$on("$routeChangeStart",function(event, next, current){
 	        if(!AuthenticationHolderService.isLoggedIn()){
 	        	RouteService.redirectToLogin();
